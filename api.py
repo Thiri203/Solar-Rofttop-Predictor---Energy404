@@ -31,6 +31,21 @@ class PredictionRequest(BaseModel):
 def root():
     return {"message": "☀️ Energy404 API is running! Use POST /predict to get predictions."}
 
+# ===== Allow City, Builting Type and Tilt Range =====
+@app.get("/metadata")
+def get_metadata():
+    return {
+        "cities": ['Colombo', 'Maldives', 'Karachi', 'Beirut', 'Antigua', 'Izmir',
+       'Honduras', 'Panama', 'Nairobi', 'Lagos', 'LagosState',
+       'Samarkand', 'Accra', 'Mexico City', 'SouthAfrica', 'DarEsSalaam',
+       'Almaty', 'Manila', 'GreatDhakaRegion', 'Grenada'],
+        "building_types": ['commercial', 'hotels', 'industrial', 'multifamily residential',
+       'peri-urban settlement', 'public health facilities',
+       'public sector', 'schools', 'single family residential',
+       'small commercial'],
+        "tilt_range": [0, 60]
+    }
+
 # ===== Prediction Endpoint =====
 @app.post("/predict")
 def get_prediction(req: PredictionRequest):
