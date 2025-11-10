@@ -7,7 +7,12 @@ models_local_backup/
 __pycache__/
 *.pkl
 *.parquet
+.uv/
+.python-version
+.pyproject.toml
 
 # Ignore compiled files
 *.pyc
 .DS_Store
+
+

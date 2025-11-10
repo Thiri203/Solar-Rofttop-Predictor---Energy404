@@ -1,0 +1,29 @@
+# === Ignore unnecessary folders ===
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.parquet
+*.ipynb
+*.db
+
+# Large data folders
+outputs/
+notebooks/
+*.zip
+*.tar
+*.gz
+
+# Git and virtual environments
+.git/
+.gitignore
+.venv/
+env/
+venv/
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db

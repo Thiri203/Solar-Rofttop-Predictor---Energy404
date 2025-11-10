@@ -4,14 +4,14 @@ app_dash.py — Dash frontend for Energy404
 Interactive web interface for predicting rooftop solar potential.
 Works with FastAPI backend (api.py) and prediction pipeline (predict.py).
 """
-
+import os
 import dash
 from dash import dcc, html, Input, Output, State
 import requests
 from dash.exceptions import PreventUpdate
 
 # ===== Configuration =====
-API_BASE_URL = "http://127.0.0.1:8000"
+API_BASE_URL = os.getenv("API_BASE_URL", "http://127.0.0.1:8000")
 
 # ===== Initialize Dash App =====
 app = dash.Dash(
@@ -619,7 +619,7 @@ if __name__ == '__main__':
     print("\n" + "="*50)
     print("Energy404 Solar Potential Estimator")
     print("="*50)
-    print(f"Frontend running at: http://127.0.0.1:8050")
+    print(f"Frontend running at: http://0.0.0.0:8050")
     print(f"API backend expected at: {API_BASE_URL}")
     print("="*50 + "\n")
-    app.run_server(debug=True, host='127.0.0.1', port=8050)
+    app.run_server(debug=True, host='0.0.0.0', port=8050)
