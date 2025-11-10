@@ -7,15 +7,17 @@ __pycache__/
 *.parquet
 *.ipynb
 *.db
-
-# Large data folders
-outputs/
-notebooks/
 *.zip
 *.tar
 *.gz
 
-# Git and virtual environments
+# === Local development or training artifacts (exclude) ===
+notebooks/
+outputs/
+training_data/
+model.ipynb
+
+# === Git and environments ===
 .git/
 .gitignore
 .venv/
@@ -23,7 +25,8 @@ env/
 venv/
 .idea/
 .vscode/
+.env
 
-# OS files
+# === OS files ===
 .DS_Store
 Thumbs.db

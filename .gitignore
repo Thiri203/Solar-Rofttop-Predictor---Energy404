@@ -9,7 +9,10 @@ __pycache__/
 *.parquet
 .uv/
 .python-version
-.pyproject.toml
+pyproject.toml
+uv.lock
+
+
 
 # Ignore compiled files
 *.pyc

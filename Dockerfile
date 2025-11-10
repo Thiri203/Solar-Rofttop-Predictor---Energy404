@@ -1,30 +1,30 @@
-# ===== Base Image =====
-FROM python:3.11-slim
+# ===== Stage 1: Builder =====
+FROM python:3.11-slim AS builder
 
-# ===== Set Working Directory =====
 WORKDIR /app
 
-# ===== System dependencies for LightGBM / XGBoost =====
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    libgomp1 \
-    build-essential \
-    git \
-    gcc \
-    curl \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    build-essential gcc g++ git curl && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# ===== Copy Project Files =====
+COPY requirements.txt .
+RUN pip install --user --no-cache-dir -r requirements.txt
+
 COPY . .
 
-# ===== Install Python Dependencies =====
-RUN pip install --no-cache-dir --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt
+# ===== Stage 2: Runtime =====
+FROM python:3.11-slim AS runtime
 
-# We will run two different commands from docker-compose, so no fixed CMD here
-# (docker-compose will override command per service)
+# Install only runtime library needed for LightGBM/XGBoost
+RUN apt-get update && apt-get install -y --no-install-recommends libgomp1 && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY --from=builder /root/.local /root/.local
+ENV PATH=/root/.local/bin:$PATH
+
+COPY . .
+
 EXPOSE 8000 8050
-
 CMD ["bash"]
-
-# this is testing for github push not rewritting
 
