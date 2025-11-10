@@ -1,0 +1,10 @@
+[project]
+name = "rooftop-solar-potential-predictor"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "dash-core-components>=2.0.0",
+    "parquet>=1.3.1",
+]

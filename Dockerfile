@@ -26,3 +26,5 @@ EXPOSE 8000 8050
 
 CMD ["bash"]
 
+# this is testing for github push not rewritting
+
